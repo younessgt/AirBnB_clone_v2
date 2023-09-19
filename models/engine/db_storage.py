@@ -9,7 +9,7 @@ from models.user import User
 from models.state import State
 # from models.amenity import Amenity
 from models.place import Place
-# from models.review import Review
+from models.review import Review
 
 
 class DBStorage:
@@ -39,7 +39,7 @@ class DBStorage:
 
     def all(self, cls=None):
         """  Retrieving data for each class from a database."""
-        list_class = [State, City, User, Place]
+        list_class = [State, City, User, Place, Review]
         temp = {}
         if cls:
             list_obj = self.__session.query(cls).all()
