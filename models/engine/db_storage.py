@@ -7,7 +7,7 @@ from sqlalchemy.orm import sessionmaker, scoped_session
 from models.city import City
 from models.user import User
 from models.state import State
-# from models.amenity import Amenity
+from models.amenity import Amenity
 from models.place import Place
 from models.review import Review
 
@@ -39,7 +39,7 @@ class DBStorage:
 
     def all(self, cls=None):
         """  Retrieving data for each class from a database."""
-        list_class = [State, City, User, Place, Review]
+        list_class = [State, City, User, Place, Review, Amenity]
         temp = {}
         if cls:
             list_obj = self.__session.query(cls).all()
