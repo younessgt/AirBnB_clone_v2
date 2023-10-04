@@ -25,17 +25,17 @@ def do_deploy(archive_path):
     """ uploding the archive to /tmp/ """
     put(archive_path, '/tmp/')
 
-    run(f'mkdir -p /data/web_static/releases/{file_no_ext}')
+    run(f'mkdir -p /data/web_static/releases/{file_no_ext}/')
 
     run(f'tar -xzf /tmp/{base_name} -C \
-    /data/web_static/releases/{file_no_ext}')
+    /data/web_static/releases/{file_no_ext}/')
 
     run(f'rm /tmp/{base_name}')
 
     file_html_css = f'/data/web_static/releases/{file_no_ext}'
 
     run(f'mv /data/web_static/releases/{file_no_ext}/web_static/* \
-    {file_html_css}')
+    {file_html_css}/')
 
     run(f'rm -rf /data/web_static/releases/{file_no_ext}/web_static')
 
