@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """ Python script for a full deployment to the web servers"""
 
-from fabric.api import run, put, env, local
+from fabric.api import run, put, env, local, runs_once
 import os
 from datetime import datetime
 
@@ -10,6 +10,7 @@ env.user = 'ubuntu'
 env.key_filename = '~/.ssh/school'
 
 
+@runs_once
 def do_pack():
     """ function that generate a tgz archive
     from a folder """
