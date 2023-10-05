@@ -7,7 +7,8 @@ env.hosts = ['18.235.249.72', '34.239.254.179']
 # env.key_filename = '~/.ssh/school'
 
 
-def do_list(number=0):
+def do_clean(number=0):
+    """ cleaning specific directories from out dated archives """
 
     if int(number) == 0:
         number = 1
