@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/python3
 """ Python script for a full deployment to the web servers"""
 
 from fabric.api import run, put, env, local
