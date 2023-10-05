@@ -18,7 +18,7 @@ def do_pack():
     folder_to_compress = "web_static"
 
     """ create the archive """
-    local(f'tar czvf {archive_name} {folder_to_compress}')
+    local(f'tar -czvf {archive_name} {folder_to_compress}')
 
     """ checking if the archive file is generated """
     if os.path.exists(archive_name):

@@ -6,6 +6,8 @@ import os
 from datetime import datetime
 
 env.hosts = ['18.235.249.72', '34.239.254.179']
+env.user = 'ubuntu'
+env.key_filename = '~/.ssh/school'
 
 
 def do_pack():
@@ -18,7 +20,7 @@ def do_pack():
     folder_to_compress = "web_static"
 
     """ create the archive """
-    local(f'tar czvf {archive_name} {folder_to_compress}')
+    local(f'tar -czvf {archive_name} {folder_to_compress}')
 
     """ checking if the archive file is generated """
     if os.path.exists(archive_name):
