@@ -13,7 +13,7 @@ def do_clean(number=0):
 
     if int(number) == 0:
         number = 1
- 
+
     result = sorted(os.listdir("versions"))
     [result.pop() for i in range(number)]
     with lcd("versions"):
