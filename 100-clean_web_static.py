@@ -13,15 +13,9 @@ def do_clean(number=0):
     if int(number) == 0:
         number = 1
 
-    result = local("ls -t version", capture=True)
-    file_list = result.split("\n")
-    file_list = [archive for archive in file_list if archive.strip()]
-    for i in range(int(number), len(file_list)):
-        local(f"rm versions/{file_list[i]}")
-
-    with cd("/data/web_static/releases"):
-        result_remote = run("ls -t")
-        file_list = result_remote.stdout.split(" ")
-        file_list = [file_web for file_web in file_list if file_web.strip()]
-        for i in range(int(number), len(file_list)):
-            run(f"rm -rf /data/web_static/releases/{file_list[i]}")
+    with cd.local('./versions'):
+        local("ls -lt | tail -n +{} | rev | cut -f1 -d" " | rev | \
+        xargs -d '\n' rm".format(1 + number))
+    with cd('/data/web_static/releases/'):
+        run("ls -lt | tail -n +{} | rev | cut -f1 -d" " | rev | \
+        xargs -d '\n' rm".format(1 + number))
