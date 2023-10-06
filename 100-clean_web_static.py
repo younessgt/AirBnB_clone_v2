@@ -20,8 +20,5 @@ def do_clean(number=0):
         local(f"rm versions/{file_list[i]}")
 
     with cd("/data/web_static/releases/"):
-        result_remote = run("ls -t")
-        file_list = result_remote.stdout.split(" ")
-        file_list = [file_web for file_web in file_list if file_web.strip()]
-        for i in range(int(number), len(file_list)):
-            run(f"rm -rf /data/web_static/releases/{file_list[i]}")
+        run("ls -lt | tail -n +{} | rev | cut -f1 -d" " | rev | \
+        xargs -d '\n' rm".format(1 + int(number)))
