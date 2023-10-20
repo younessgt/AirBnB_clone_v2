@@ -46,7 +46,7 @@ class DBStorage:
             for obj in list_obj:
                 key = "{}.{}".format(cls.__name__, obj.id)
                 temp[key] = obj
-                
+
         else:
 
             for elem in list_class:
@@ -54,7 +54,7 @@ class DBStorage:
                 for obj in list_obj:
                     key = "{}.{}".format(elem.__name__, obj.id)
                     temp[key] = obj
-                    
+
         return temp
 
     def new(self, obj):
@@ -73,5 +73,10 @@ class DBStorage:
         """ reloading  database"""
         Base.metadata.create_all(self.__engine)
         Session = sessionmaker(bind=self.__engine, expire_on_commit=False)
-        session = scoped_session(Session)
-        self.__session = session()
+        self.__session = scoped_session(Session)
+
+    def close(self):
+        """ calling remove method
+        - first it call a close method to remove the current session
+        and create a new one when the session is called again """
+        self.__session.remove()
