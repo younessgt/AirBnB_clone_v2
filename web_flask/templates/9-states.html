@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<HTML lang="en">
+    <HEAD>
+        <TITLE>HBNB</TITLE>
+    </HEAD>
+    <BODY>
+		
+		{% if my_id == 'not_found' %}
+			<h1>Not found!</h1>
+
+		{% elif my_id == 'all_state'%}
+			<h1>States</h1>
+			<ul>
+			{% for obj in list_state.values()|sort(attribute='name') %}
+				<li>{{ obj.id }}: <b>{{ obj.name }}</b></li>
+			{% endfor %}
+			</ul>
+
+		{% else %}
+			<h1>States: {{ obj.name }}</h1>
+			<h3>Cities:</h3>
+			<ul>
+				{% for city in obj.cities|sort(attribute='name') %}
+					<li>{{ city.id }}: <b>{{ city.name }}</b></li>
+				{% endfor %}
+			</ul>
+		{% endif %}
+
+	</BODY>
+</HTML>
